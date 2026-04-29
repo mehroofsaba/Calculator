@@ -1,5 +1,24 @@
-# Calculator
-A hello kitty themed calculator that can do scientific calculations, calculate tips, change units and the basic calculation. 
-## 📸 Preview
+#  Hello Kitty Calculator
 
-[Calculator UI](screenshot.png)
+A modern Java Swing calculator with:
+
+-  Dark / Light mode
+-  Custom UI theme
+-  Scientific functions
+-  History panel
+-  Draggable custom window
+-  Rounded modern buttons
+
+---
+
+##  Light Mode
+
+![Light Mode](lightmode.png)
+
+---
+
+##  Dark Mode
+
+![Dark Mode](darkmode.png)
+
+
