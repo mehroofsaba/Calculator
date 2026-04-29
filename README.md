@@ -15,12 +15,12 @@ A modern Java Swing calculator with:
 
 ##  Light Mode
 
-![Light Mode](lightmode.png)
+![Light Mode](lightmode.png.png)
 
 ---
 
 ##  Dark Mode
 
-![Dark Mode](darkmode.png)
+![Dark Mode](darkmode.png.png)
 
 
