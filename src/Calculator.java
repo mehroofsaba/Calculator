@@ -19,18 +19,19 @@ public class Calculator extends JFrame implements ActionListener {
     ArrayList<JButton> sciButtons = new ArrayList<>();
     ArrayList<JButton> allButtons = new ArrayList<>();
 
-    Color pink = new Color(255,192,203);
-    Color white = Color.WHITE;
+    // LIGHT MODE 
+    Color pink = new Color(255, 182, 193);        // baby pink
+    Color cremeWhite = new Color(255, 248, 240);  // cream white
 
-    Color darkRed1 = new Color(171, 0, 50);   // #AB0032
-    Color darkRed2 = new Color(234, 88, 99);  // #EA5863
-    Color opColor = new Color(255,191,214);     // #FFBFD6
-    Color modeExitColor = new Color(251,151,140); // #FB978C
-    Color funcColor = new Color(254,180,184);   // #FEB4B8
-    Color darkOp = new Color(160, 11, 6);     // #A00B06 
-    Color darkModeExit = new Color(172, 53, 42); // #AC352A
-    Color darkFunc = new Color(149, 59, 53);  // #953B35
+    //  DARK MODE 
+    Color bgDark = new Color(28, 28, 28);        // smooth charcoal
+    Color panelDark = new Color(40, 40, 40);     // display/history
 
+    Color numColor = new Color(60, 60, 60);      // numbers (soft grey)
+    Color funcColorDark = new Color(200, 70, 90); // functions (muted rose red)
+    
+
+    
     int xMouse, yMouse;
     
     class RoundButton extends JButton {
@@ -176,14 +177,18 @@ public class Calculator extends JFrame implements ActionListener {
         for(int i=0;i<btns.length;i++){
 
         	JButton b = new RoundButton(btns[i]);
+        	String text = btns[i];
             b.setFont(new Font("Arial",Font.BOLD,16));
             b.setFocusPainted(false);
             b.setBorder(BorderFactory.createLineBorder(new Color(200,200,200), 2));
             //  LIGHT MODE PATTERN
-            if(i % 4 == 3){
-                b.setBackground(pink);
+         // 🔢 NUMBER BUTTONS
+            if(text.matches("[0-9]") || text.equals(".")) {
+                b.setBackground(cremeWhite);
+
             } else {
-                b.setBackground(((i + i/4) % 2 == 0) ? white : pink);
+                // ⚙️ ALL FUNCTIONS + OPERATORS
+                b.setBackground(pink);
             }
 
             // BORDERS ADDED 
@@ -211,26 +216,25 @@ public class Calculator extends JFrame implements ActionListener {
 
     	if(darkMode){
 
-    	    getContentPane().setBackground(Color.BLACK);
-    	    centerPanel.setBackground(Color.BLACK);
-    	    panel.setBackground(new Color(20,20,20));
+    		getContentPane().setBackground(bgDark);
+    		centerPanel.setBackground(bgDark);
+    		panel.setBackground(bgDark);
 
-    	    display.setBackground(Color.BLACK);
-    	    display.setForeground(Color.WHITE);
+    		display.setBackground(panelDark);
+    		history.setBackground(panelDark);
 
-    	    history.setBackground(Color.BLACK);
-    	    history.setForeground(Color.WHITE);
-
+    		display.setForeground(Color.WHITE);
+    		history.setForeground(Color.LIGHT_GRAY);
     	} else {
 
     	    getContentPane().setBackground(pink);
     	    centerPanel.setBackground(pink);
     	    panel.setBackground(pink);
 
-    	    display.setBackground(white);
+    	    display.setBackground(cremeWhite);
     	    display.setForeground(Color.BLACK);
-
-    	    history.setBackground(white);
+    	    
+    	    history.setBackground(cremeWhite);
     	    history.setForeground(Color.BLACK);
     	}
 
@@ -243,62 +247,30 @@ public class Calculator extends JFrame implements ActionListener {
 
                 String text = b.getText();
 
-                //OPERATORS
-                if(text.equals("+") || text.equals("-") || text.equals("*") ||
-                   text.equals("/") || text.equals("=")) {
-
-                    b.setBackground(darkOp);
-
-                //MODE + EXIT
-                } else if(text.equals("Mode") || text.equals("Exit")) {
-
-                    b.setBackground(darkModeExit);
-
-                //FUNCTION BUTTONS
-                } else if(text.equals("C") || text.equals("√") || text.equals("x²") ||
-                          text.equals("sin") || text.equals("cos") || text.equals("Dark")) {
-
-                    b.setBackground(darkFunc);
+                // 🔢 NUMBER BUTTONS
+                if(text.matches("[0-9]") || text.equals(".")) {
+                    b.setBackground(numColor);
 
                 } else {
-                  
-                    if(i % 4 == 3){
-                        b.setBackground(darkRed2);
-                    } else {
-                        b.setBackground(((i + i/4) % 2 == 0) ? darkRed1 : darkRed2);
-                    }
+                    // ⚙️ ALL FUNCTIONS + OPERATORS
+                    b.setBackground(funcColorDark);
                 }
 
                 b.setForeground(Color.WHITE);
             }
-
             //LIGHT MODE
             else {
 
                 String text = b.getText();
 
                 // SPECIAL BUTTON COLORS
-                if(text.equals("+") || text.equals("-") || text.equals("*") ||
-                   text.equals("/") || text.equals("=")) {
-
-                    b.setBackground(opColor);
-
-                } else if(text.equals("Mode") || text.equals("Exit")) {
-
-                    b.setBackground(modeExitColor);
-
-                } else if(text.equals("C") || text.equals("√") || text.equals("x²") ||
-                          text.equals("sin") || text.equals("cos") || text.equals("Dark")) {
-
-                    b.setBackground(funcColor);
+             // 🔢 NUMBER BUTTONS
+                if(text.matches("[0-9]") || text.equals(".")) {
+                    b.setBackground(cremeWhite);
 
                 } else {
-                    // ORIGINAL PATTERN
-                    if(i % 4 == 3){
-                        b.setBackground(pink);
-                    } else {
-                        b.setBackground(((i + i/4) % 2 == 0) ? white : pink);
-                    }
+                    // ⚙️ ALL FUNCTIONS + OPERATORS
+                    b.setBackground(pink);
                 }
 
                 b.setForeground(Color.BLACK);
